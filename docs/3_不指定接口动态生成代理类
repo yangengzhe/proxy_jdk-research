@@ -1,0 +1,24 @@
+> 基于上一个版本，存在问题必须指定接口，更改接口代理不同类的话需要修改代码。目的，将接口通过参数的形式传入，生成代理类
+
+## 思路：
+
+传入某个接口的java.lang.Class对象，可以为这个接口及里面的方法都生成代理内容
+
+## 步骤：
+
+1. 参数传入接口 Class<?> interface
+2. 利用反射，获取方法、名称等
+3. 结合上一版本代码完成改进
+
+## 测试：
+
+com.i3geek.proxy.interfaceproxy.InterfaceProxyTest
+
+## 结果：
+
+	动态生成代理耗时：542ms
+	Before Hello World!
+	Hello World
+	After Hello World!
+
+## 缺点：

@@ -20,7 +20,7 @@
 
 ## 测试：
 
-com.i3geek.proxy.staticproxy.AutoStaticProxyTest
+com.i3geek.proxy.auto_staticproxy.AutoStaticProxyTest
 
 ## 结果：
 
@@ -34,3 +34,7 @@ com.i3geek.proxy.staticproxy.AutoStaticProxyTest
 运行可能会报错”Exception in thread “main” java.lang.ClassNotFoundException: com.xrq.proxy.StaticProxy”
 主要是因为虽然你的src目录下生成了StaticProxy.class，但没有更新出来。
 解决办法：点击src文件夹，再按F5（或者右键，点击Refresh也行）刷新一下就可以了
+
+## 缺点
+
+必须依据指定好接口

@@ -60,6 +60,7 @@ public class AutoStaticProxy{
         Class<?> c = ul.loadClass("com.i3geek.proxy.auto_staticproxy.StaticProxy");
  
         //利用反射将c实例化出来 构造器初始化
+        /** 前提要指定接口和实例类 */
         Constructor<?> constructor = c.getConstructor(HelloWorld.class);
         HelloWorld helloWorldImpl = new HelloWorldImpl();
         HelloWorld helloWorld = (HelloWorld)constructor.newInstance(helloWorldImpl);
