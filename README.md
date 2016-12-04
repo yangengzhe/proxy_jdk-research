@@ -23,6 +23,8 @@
 ## TAGS
 
 - READY	准备工作
+- STATICPROXY 静态代理
+- AUTOSTATICPROXY 动态生成静态代理
 
 
 
