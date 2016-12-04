@@ -1,0 +1,36 @@
+> 静态代理需要为每一个被代理类生成一个代理类。如果手动实现的话，那工作量是巨大的，我们可不可以用代码进行动态的生成呢？
+
+##思路：
+
+既然是要自动生成代理类（即StaticProxy类）：
+1. 要有java源文件代码（即StaticProxy类代码）
+2. 编译（利用JavaCompiler）
+3. 加载类（利用类加载器）
+4. 实例化对象（利用反射原理）
+5. 运行代理方法并清除无关文件
+
+## 步骤：
+
+1. 构造JAVA代理类源文件字符串
+2. 生成.java文件到工程目录下
+3. 利用JavaCompiler类动态编译代码，被编译成.class文件，放在同一目录下
+4. 用URLClassLoader加载类。（ClassLoader只能加载CLASSPATH下的类）
+5. 利用反射实例化代理类
+6. 清除无关文件，例如生成的代理类.java和.class文件
+
+## 测试：
+
+com.i3geek.proxy.staticproxy.AutoStaticProxyTest
+
+## 结果：
+
+	动态生成代理耗时：477ms
+	Before Hello World!
+	Hello World
+	After Hello World!
+
+## 注意：
+
+运行可能会报错”Exception in thread “main” java.lang.ClassNotFoundException: com.xrq.proxy.StaticProxy”
+主要是因为虽然你的src目录下生成了StaticProxy.class，但没有更新出来。
+解决办法：点击src文件夹，再按F5（或者右键，点击Refresh也行）刷新一下就可以了
