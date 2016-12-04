@@ -1,6 +1,7 @@
-package com.i3geek.proxy.interfaceproxy;
+package com.i3geek.proxy;
 
 import com.i3geek.proxy.base.HelloWorld;
+import com.i3geek.proxy.interfaceproxy.InterfaceProxy;
 
 public class InterfaceProxyTest {
     public static void main(String[] args) throws Exception

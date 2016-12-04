@@ -12,7 +12,7 @@
 
 ## 测试：
 
-com.i3geek.proxy.interfaceproxy.InterfaceProxyTest
+com.i3geek.proxy.InterfaceProxyTest
 
 ## 结果：
 
@@ -22,3 +22,5 @@ com.i3geek.proxy.interfaceproxy.InterfaceProxyTest
 	After Hello World!
 
 ## 缺点：
+
+必须指定好被代理实例

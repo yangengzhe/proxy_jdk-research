@@ -1,0 +1,52 @@
+> 基于上一个版本，存在问题必须指定被代理实例+代理内容（例如代理类HelloWorldImpl和代理增加的内容 "Before Hello World" 和"After Hello World"），不同的被代理内容则需要修改代码。
+> 目的，将*被代理类和代理内容*封装后通过参数的形式传入，生成可以让内容复用的代理类
+
+## 思路：
+
+定义一个接口InvocationHandler
+InvocationHandler用于传入被代理内容，从而使代理内容以参数形式传入，可以被复用
+
+## 步骤：
+
+1. 定义一个接口InvocationHandler（这么起名字是因为JDK提供的代理实例处理程序的接口也是InvocationHandler）用来封装被代理实例和代理内容，包含方法invoke
+2. 实例化InvocationHandler 为HelloInvocationHandler。参数是Object类型的对象 用于存储被代理对象，在invoke中完成代理内容（增强）
+3. 用字符串定义好生成的代理类 $Proxy1 （也是因为JDK这么命名的）重构被代理方法 执行invoke方法。（在这里假认为InvocationHandler为HelloWorld实例）
+
+	public class $Proxy1 implements HelloWorld{ //通过传参确定接口名称
+    	InvocationHandler h; //被封装后的实例（真是实例+增强内容）
+    	public $Proxy1(InvocationHandler h){
+        	this.h = h;
+   	 	}
+    	public void print()	{ //通过传参+循环 重构该接口所有方法的实例
+        	try{
+            	Method md = com.i3geek.proxy.base.HelloWorld.class.getMethod("print"); //获得真实实例的方法
+            	h.invoke(this, md); //调用代理执行该方法 传入对象和执行的方法
+        	}catch (Exception e){
+            	e.printStackTrace();
+        	}
+    	}
+	}
+
+4. **此时将InvocationHandler看成HelloWorld ，把InvocationHandler当做是被代理类**。利用反射，获取方法、名称等完成代理操作类ReuseProxy
+
+### 使用时：
+
+1. 重写封装类InvocationHandler的invoke方法，目的完成代理功能（增强功能），如方法执行前代码和方法执行后代码
+2. 实例化真实类（被代理类）对象，并封装成InvocationHandler对象
+3. 调用代理类ReuseProxy，传入接口类和封装对象，生成代理类实例
+4. 像正常使用一样，执行代理类方法
+
+## 测试：
+
+com.i3geek.proxy.ReuseProxyTest
+
+## 结果：
+
+	动态生成代理耗时：492ms
+	Before Hello World!
+	Hello World
+	After Hello World!
+
+## 优点：
+
+此时想生成代理类，只需要实例化代理对象，重写InvocationHandler的invoke方法（进行增强），然后通过Proxy类生成代理类实例，调用方法即可（实际上是调用的InvocationHandler类，执行完增强后 执行invoke）

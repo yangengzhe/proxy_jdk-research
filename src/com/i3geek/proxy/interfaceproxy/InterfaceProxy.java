@@ -64,6 +64,7 @@ public class InterfaceProxy {
         Class<?> c = ul.loadClass("com.i3geek.proxy.interfaceproxy.StaticProxy");
         
         //利用反射将c实例化出来 构造器初始化
+        /** 需要实例化被代理类 */
         Constructor<?> constructor = c.getConstructor(interfaces); // 传入的参数
         Object helloWorldImpl = new HelloWorldImpl();
         Object obj = constructor.newInstance(helloWorldImpl);

@@ -1,7 +1,8 @@
-package com.i3geek.proxy.staticproxy;
+package com.i3geek.proxy;
 
 import com.i3geek.proxy.base.HelloWorld;
 import com.i3geek.proxy.base.HelloWorldImpl;
+import com.i3geek.proxy.staticproxy.StaticProxy;
 
 public class StaticProxyTest {
     public static void main(String args[]){

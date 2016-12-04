@@ -1,5 +1,6 @@
-package com.i3geek.proxy.auto_staticproxy;
+package com.i3geek.proxy;
 
+import com.i3geek.proxy.auto_staticproxy.AutoStaticProxy;
 import com.i3geek.proxy.base.HelloWorld;
 
 public class AutoStaticProxyTest {
