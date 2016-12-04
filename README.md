@@ -25,6 +25,7 @@
 - READY	准备工作
 - STATICPROXY 静态代理
 - AUTOSTATICPROXY 动态生成静态代理
+- INTERFACEPROXY 不指定接口动态生成代理类
 
 
 
